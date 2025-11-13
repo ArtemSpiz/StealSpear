@@ -85,7 +85,7 @@ const IndustriesCards = [
           <div
             :class="[
               'overflow-hidden bg-[rgba(255,255,255,0.05)] h-full box-border rounded-[20px] relative px-8 py-8 flex flex-col',
-              { 'bg-[#1E1E23]': index === 0 },
+              { '!bg-[#1E1E23]': index === 0 },
             ]"
             :style="
               index === 4
