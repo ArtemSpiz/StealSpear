@@ -1,3 +1,286 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background: #000;
+}
+
+.base-x-padding {
+  @apply px-[200px];
+}
+
+.underTitle {
+  @apply text-[#f8fafc] font-satoshi font-medium uppercase
+         text-[16px]
+         leading-[var(--line-linehight,16px)]
+         tracking-[var(--line-letterspacing,8px)];
+}
+
+.title {
+  @apply text-[var(--text-primary-invert,#f8fafc)]  font-["Satoshi_Variable"]
+         text-[82px] font-normal leading-[84px]
+         tracking-[var(--h1-letterspacing,-2.4px)];
+}
+
+.secTitle {
+  @apply font-["Times_New_Roman"]
+         italic text-[96px];
+}
+
+.description {
+  @apply text-[var(--text-primary-invert,#f8fafc)] font-["Helvetica_Neue"]
+         text-[18px] font-light
+         leading-[var(--base-linehight,26px)];
+}
+
+@media (max-width: 1280px) {
+  .base-x-padding {
+    @apply px-[100px];
+  }
+
+  .title {
+    @apply text-[72px] leading-[128%];
+  }
+  .secTitle {
+    @apply text-[86px];
+  }
+}
+
+@media (max-width: 1024px) {
+  .base-x-padding {
+    @apply px-[60px];
+  }
+
+  .title {
+    @apply text-[62px] leading-[128%];
+  }
+  .secTitle {
+    @apply text-[76px];
+  }
+
+  .description {
+    @apply text-[16px] 
+         leading-[var(--base-linehight,23px)];
+  }
+}
+
+@media (max-width: 768px) {
+  .base-x-padding {
+    @apply px-[20px];
+  }
+
+  .underTitle {
+    @apply text-[12px];
+  }
+
+  .title {
+    @apply text-[52px];
+  }
+
+  .secTitle {
+    @apply text-[60px];
+  }
+
+  .description {
+    @apply text-[14px];
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    @apply text-[42px];
+  }
+}
+
+@font-face {
+  font-family: "Satoshi Variable";
+  src: url("/src/fonts/satoshi/Satoshi-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi Variable";
+  src: url("/src/fonts/satoshi/Satoshi-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi Variable";
+  src: url("/src/fonts/satoshi/Satoshi-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi Variable";
+  src: url("/src/fonts/satoshi/Satoshi-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi Variable";
+  src: url("/src/fonts/satoshi/Satoshi-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Times New Roman";
+  src: url("./fonts/times.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueThin.otf")
+    format("opentype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueThinItalic.otf")
+    format("opentype");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueUltraLight.otf")
+    format("opentype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueUltraLightItalic.otf")
+    format("opentype");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueLight.otf")
+    format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueLightItalic.otf")
+    format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueRoman.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueItalic.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueMedium.otf")
+    format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueMediumItalic.otf")
+    format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueBold.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueBoldItalic.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueHeavy.otf")
+    format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueHeavyItalic.otf")
+    format("opentype");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueBlack.otf")
+    format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/src/fonts/helvetica-neue-5/HelveticaNeueBlackItalic.otf")
+    format("opentype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
