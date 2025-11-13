@@ -34,6 +34,12 @@ body {
          leading-[var(--base-linehight,26px)];
 }
 
+@media (max-width: 1500px) {
+  .base-x-padding {
+    @apply px-[150px];
+  }
+}
+
 @media (max-width: 1280px) {
   .base-x-padding {
     @apply px-[100px];

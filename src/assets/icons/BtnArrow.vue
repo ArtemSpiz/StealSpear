@@ -1,3 +1,12 @@
+<script setup>
+defineProps({
+  color: {
+    type: String,
+    default: "white",
+  },
+});
+</script>
+
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -8,7 +17,7 @@
   >
     <path
       d="M19 12L5 12M19 12L13 18M19 12L13 6"
-      stroke="white"
+      :stroke="color"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
