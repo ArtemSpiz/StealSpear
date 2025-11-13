@@ -53,9 +53,14 @@ const FooterLinks = [
           <div class="flex gap-3 self-stretch max-md:justify-center">
             <div
               v-for="soc in FooterSoc"
-              class="box-border w-10 p-[10px] bg-black rounded-xl flex justify-center items-center"
+              :key="soc.image"
+              class="box-border cursor-pointer w-10 p-[10px] bg-black rounded-xl flex justify-center items-center transition-all duration-500 ease-in-out transform hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-black/50"
             >
-              <img class="w-auto h-5" :src="soc.image" alt="" />
+              <img
+                class="w-auto h-5 transition-transform duration-500 ease-in-out hover:rotate-9"
+                :src="soc.image"
+                alt=""
+              />
             </div>
           </div>
 
@@ -70,16 +75,13 @@ const FooterLinks = [
           SUPPORT
         </div>
 
-        <div
+        <a
           v-for="(link, index) in FooterLinks"
           :key="index"
-          :class="[
-            'text-xs font-helvetica text-black leading-[150%]',
-            index === FooterLinks.length - 1 ? 'mb-0' : 'mb-4',
-          ]"
+          class="relative text-xs cursor-pointer font-helvetica text-black leading-[150%] mb-4 inline-block after:content-[''] after:absolute after:left-0 after:-bottom-[-1px] after:h-[2px] after:bg-black after:w-0 after:transition-all after:duration-300 hover:after:w-full"
         >
           {{ link.title }}
-        </div>
+        </a>
       </div>
     </div>
   </div>

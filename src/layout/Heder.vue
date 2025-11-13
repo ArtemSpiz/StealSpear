@@ -32,7 +32,7 @@ const headerLinks = [
         <div
           v-for="(link, index) in headerLinks"
           :key="index"
-          class="text-white cursor-pointer font-helvetica text-base font-light leading-6 capitalize"
+          class="text-white cursor-pointer font-helvetica text-base font-light leading-6 capitalize relative after:content-[''] after:absolute after:left-0 after:-bottom-[-5px] after:h-[1px] after:bg-white after:w-0 after:transition-all after:duration-500 hover:after:w-full"
         >
           {{ link.title }}
         </div>
