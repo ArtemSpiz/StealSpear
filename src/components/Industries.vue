@@ -63,7 +63,7 @@ const IndustriesCards = [
 <template>
   <div class="flex justify-items-center pb-[140px] px-[20px] items-center">
     <div
-      class="w-full max-w-[1400px] mx-auto bg-[#111] rounded-[40px] px-[80px] py-[100px] 2xl:px-[155px] 2xl:py-[120px]"
+      class="w-full max-w-[1800px] mx-auto bg-[#111] rounded-[40px] px-[80px] py-[100px] 2xl:px-[155px] 2xl:py-[120px]"
     >
       <div
         class="flex flex-col gap-5 items-center text-center justify-center mb-14"
