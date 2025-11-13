@@ -125,9 +125,9 @@ const IndustriesCards = [
             </div>
             <div
               :class="[
-                'h-full w-auto flex object-contain absolute z-0',
+                ' w-auto flex object-contain absolute z-0',
                 {
-                  'top-0 right-[40px]': index === 0,
+                  'top-0 h-full right-[40px]': index === 0,
                   'bottom-0 right-[0px] h-[300px]': index === 1,
                   'bottom-0 right-[0px] h-[290px]': index === 2,
                   'bottom-0 right-1/2 translate-x-1/2 h-[215px] ': index === 3,
