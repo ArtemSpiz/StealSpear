@@ -10,6 +10,7 @@ import ServicesLine2 from "../assets/img/ServicesLine2.png";
 import ServicesLine3 from "../assets/img/ServicesLine3.png";
 import ServicesLine4 from "../assets/img/ServicesLine4.png";
 import ServicesLine5 from "../assets/img/ServicesLine5.png";
+import { onMounted, onUnmounted, ref } from "vue";
 
 const ServicesCards = [
   {
@@ -43,26 +44,72 @@ const ServicesCards = [
     text: "Make informed marketing decisions with our data insights. Our experienced analysts dive deep into your digital marketing data, providing actionable insights to improve your strategies. Stay competitive with our evolving and adaptive data solutions.",
   },
 ];
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const pageRef = ref(null);
+
+let animation = null;
+
+onMounted(() => {
+  animation = gsap.fromTo(
+    pageRef.value,
+    {
+      y: -200,
+      z: 100,
+      opacity: 0,
+      filter: "blur(30px)",
+      transformPerspective: 800,
+    },
+    {
+      y: 0,
+      z: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      duration: 2.5,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: pageRef.value,
+        start: "top 90%",
+        end: "center 50%",
+        scrub: 1.2,
+      },
+    }
+  );
+});
+
+onUnmounted(() => {
+  if (animation?.scrollTrigger) {
+    animation.scrollTrigger.kill();
+  }
+  animation?.kill();
+});
 </script>
 
 <template>
   <div
-    class="flex flex-col items-center justify-center base-x-padding gap-[124px] mb-36"
+    ref="pageRef"
+    class="flex flex-col items-center justify-center base-x-padding gap-[124px] mb-36 max-xl:gap-[100px] max-xl:mb-20 max-lg:gap-10 max-lg:mb-[50px] max-md:gap-4 max-md:mb-9"
   >
     <div class="flex flex-col gap-5 items-center text-center justify-center">
       <div class="underTitle">SERVICES</div>
       <div class="title">Our <span class="secTitle">Core</span> Services</div>
     </div>
 
-    <div class="grid grid-cols-6 grid-rows-2 gap-5 relative">
+    <div
+      class="grid grid-cols-6 grid-rows-2 gap-5 relative max-lg:flex max-lg:flex-wrap"
+    >
       <div
-        class="w-[500px] h-[500px] rounded-full absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 bg-[rgba(255,255,255,0.63)] blur-[300px]"
+        class="max-w-[500px] w-full h-auto aspect-square rounded-full absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 bg-[rgba(255,255,255,0.63)] blur-[300px] max-md:hidden"
       ></div>
       <div
         v-for="(card, index) in ServicesCards"
         :key="index"
         :class="[
-          'relative px-9 box-border py-8 gap-5 md:min-h-[410px] rounded-[20px] bg-[#111] flex flex-col justify-between',
+          'relative px-9 box-border py-8 gap-5 lg:min-h-[410px] rounded-[20px] bg-[#111] flex flex-col justify-between max-lg:px-5 max-md:px-4 max-lg:h-full ',
           {
             'col-span-3': index === 0,
             'col-span-3 col-start-4': index === 1,
@@ -78,7 +125,7 @@ const ServicesCards = [
 
         <div
           :class="[
-            'absolute -z-0 ',
+            'absolute -z-0 max-lg:hidden',
             {
               'left-[100px] w-2/3 top-[20px]': index === 0,
             },

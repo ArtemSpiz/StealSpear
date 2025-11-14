@@ -6,6 +6,9 @@ import ClientsImg3 from "../assets/img/ClientsImg3.png";
 import ClientsImg4 from "../assets/img/ClientsImg4.png";
 import WhiteBtn from "@/ui/WhiteBtn.vue";
 import BtnArrow from "@/assets/icons/BtnArrow.vue";
+import { onMounted, onUnmounted, ref } from "vue";
+
+const isHovered = ref(false);
 
 const ClientsCards = [
   {
@@ -33,18 +36,66 @@ const ClientsCards = [
     image: ClientsImg4,
   },
 ];
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const pageRef = ref(null);
+
+let animation = null;
+
+onMounted(() => {
+  animation = gsap.fromTo(
+    pageRef.value,
+    {
+      y: -200,
+      z: 100,
+      opacity: 0,
+      filter: "blur(30px)",
+      transformPerspective: 800,
+    },
+    {
+      y: 0,
+      z: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      duration: 2.5,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: pageRef.value,
+        start: "top 80%",
+        end: "center 50%",
+        scrub: 1.2,
+      },
+    }
+  );
+});
+
+onUnmounted(() => {
+  if (animation?.scrollTrigger) {
+    animation.scrollTrigger.kill();
+  }
+  animation?.kill();
+});
 </script>
 
 <template>
-  <div class="flex flex-col pb-32 items-center justify-center base-x-padding">
+  <div
+    ref="pageRef"
+    class="flex flex-col pb-32 items-center justify-center base-x-padding max-lg:pb-28 max-md:pb-24"
+  >
     <div
-      class="flex flex-col gap-3 items-center text-center justify-center mb-11"
+      class="flex flex-col gap-3 items-center text-center justify-center mb-11 max-xl:mb-8 max-md:mb-6"
     >
       <div class="underTitle">Clients</div>
       <div class="title">Case Studies</div>
     </div>
 
-    <div class="grid grid-cols-2 grid-rows-2 gap-x-16 gap-y-8 max-2xl:gap-x-10">
+    <div
+      class="grid grid-cols-2 grid-rows-2 gap-x-16 gap-y-8 max-2xl:gap-x-10 max-xl:gap-10 max-lg:gap-8 max-md:flex max-md:flex-col max-md:gap-[30px]"
+    >
       <div
         class="rounded-[30px] flex items-center px-7 py-[34px] gap-8 relative overflow-hidden border border-white bg-[rgba(39,39,39,0.40)]"
         v-for="(card, index) in ClientsCards"
@@ -61,8 +112,12 @@ const ClientsCards = [
             },
           ]"
         ></div>
-        <div class="gap-[30px] flex-col flex items-start">
-          <div class="flex flex-col gap-4">
+        <div
+          class="gap-[30px] flex-col flex items-start max-md:gap-2 max-xl:items-center"
+        >
+          <div
+            class="flex flex-col gap-4 max-md:gap-[10px] max-xl:justify-center max-xl:items-center max-xl:text-center"
+          >
             <div
               class="text-white font-satoshi text-[28px] font-bold leading-[128%]"
             >
@@ -72,6 +127,12 @@ const ClientsCards = [
               class="text-white font-helvetica text-[18px] font-normal leading-[138%]"
             >
               {{ card.text }}
+            </div>
+
+            <div
+              class="w-auto overflow-hidden rounded-[30px] hidden pb-[10px] max-xl:flex h-[250px]"
+            >
+              <img :src="card.image" alt="" />
             </div>
 
             <div class="flex gap-2">
@@ -92,20 +153,32 @@ const ClientsCards = [
           <WhiteBtn color="#000" arrow="true" label="View Case Study" />
         </div>
 
-        <div class="w-auto overflow-hidden rounded-[30px]">
+        <div class="w-auto overflow-hidden rounded-[30px] max-xl:hidden">
           <img :src="card.image" alt="" />
         </div>
       </div>
     </div>
 
     <button
-      class="pl-8 pr-[26px] mt-14 py-3 gap-1 border border-white rounded-[10px] flex items-center"
+      @mouseenter="isHovered = true"
+      @mouseleave="isHovered = false"
+      class="relative overflow-hidden group pl-8 pr-[26px] py-3 gap-1 border border-white rounded-[10px] flex items-center w-max transition-all duration-500 ease-out mt-14 max-lg:mt-10 max-md:mt-[30px]"
     >
-      <span class="text-white text-sm font-helvetica leading-[185%]">
+      <span
+        class="absolute inset-0 bg-white transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"
+      ></span>
+
+      <span
+        class="relative z-10 text-white text-sm font-helvetica transition-all duration-500 group-hover:text-black"
+      >
         All Case Studies
       </span>
 
-      <BtnArrow />
+      <BtnArrow
+        class="relative z-10 transition-all duration-500 group-hover:translate-x-[6px]"
+        hoverColor="black"
+        :isHovered="isHovered"
+      />
     </button>
   </div>
 </template>

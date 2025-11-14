@@ -21,22 +21,56 @@ const ChooseCards = [
     text: "We strengthen reputations with integrity and authenticity—key traits of industry leaders. Partnering with us and leveraging our network helps you gain the credibility to succeed in B2B and B2C markets",
   },
 ];
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onMounted, ref } from "vue";
+import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const chooseRef = ref(null);
+
+onMounted(() => {
+  gsap.fromTo(
+    chooseRef.value,
+    {
+      y: -200,
+      z: 100,
+      opacity: 0,
+      filter: "blur(30px)",
+      transformPerspective: 800,
+    },
+    {
+      y: 0,
+      z: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      duration: 2.5,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: chooseRef.value,
+        start: "top 70%",
+        end: "center 50%",
+        scrub: 1.2,
+      },
+    }
+  );
+});
 </script>
 
 <template>
   <div
+    ref="chooseRef"
     class="flex justify-center w-full mx-auto flex-col gap-16 base-x-padding pb-[330px] max-xl:pb-[200px] max-lg:pb-[150px] max-md:pb-[80px] max-sm:pb-[65px]"
   >
     <div class="flex flex-col gap-6 items-center text-center justify-center">
-      <div class="underTitle">Why choose us</div>
+      <div class="underTitle">HOW WE WORK</div>
       <div class="title max-w-[950px]">
-        Unlock the
-        <span class="secTitle">Full Potential</span> of Your Business
+        The <span class="secTitle">Steel Spear</span> Method™
       </div>
       <div class="description max-w-[920px]">
-        Our solution is designed to provide you with the tools and insights you
-        need to drive growth and efficiency. Here’s how we can help you achieve
-        your business goals.
+        A proven, repeatable framework designed exclusively for Web3 and fintech
+        brands to scale visibility, trust and growth.
       </div>
     </div>
 

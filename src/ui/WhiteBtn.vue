@@ -1,33 +1,46 @@
 <script setup>
+import { ref } from "vue";
 import BtnArrow from "@/assets/icons/BtnArrow.vue";
 
 defineProps({
-  label: {
-    type: String,
-  },
-  arrow: {
-    type: Boolean,
-  },
-  color: {
-    type: String,
-  },
-  extraClass: {
-    type: String,
-  },
+  label: String,
+  arrow: Boolean,
+  color: String,
+  hoverColor: { type: String, default: "white" },
+  extraClass: String,
 });
+
+const isHovered = ref(false);
 </script>
 
 <template>
   <button
+    @mouseenter="isHovered = true"
+    @mouseleave="isHovered = false"
     :class="[
-      'px-6 flex gap-1 items-center h-12 rounded-[10px] w-max bg-white text-black font-satoshi leading-6 text-base font-medium',
+      `relative overflow-hidden group px-6 flex gap-1 items-center h-12 rounded-[10px] w-max
+       text-black font-satoshi leading-6 text-base font-medium 
+       border border-white transition-all duration-500 ease-out
+      `,
       extraClass,
     ]"
   >
-    {{ label }}
+    <span
+      class="absolute inset-0 bg-white transition-all duration-500 ease-out group-hover:opacity-0 group-hover:blur-xl"
+    ></span>
 
-    <BtnArrow :color="color" v-if="arrow" />
+    <span
+      class="relative z-10 transition-all duration-500 group-hover:text-white"
+    >
+      {{ label }}
+    </span>
+
+    <BtnArrow
+      v-if="arrow"
+      :color="color"
+      :hoverColor="hoverColor"
+      :isHovered="isHovered"
+      class="relative z-10 transition-all duration-500 group-hover:translate-x-[6px]"
+    />
   </button>
 </template>
-
-<style scoped></style>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import WhiteBtn from "@/ui/WhiteBtn.vue";
 import Spear from "../assets/img/ContactSpear.png";
 
@@ -11,14 +11,58 @@ const form = ref({
 });
 
 const handleSubmit = () => {};
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const pageRef = ref(null);
+
+let animation = null;
+
+onMounted(() => {
+  animation = gsap.fromTo(
+    pageRef.value,
+    {
+      y: -200,
+      z: 100,
+      opacity: 0,
+      filter: "blur(30px)",
+      transformPerspective: 800,
+    },
+    {
+      y: 0,
+      z: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      duration: 2.5,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: pageRef.value,
+        start: "top 90%",
+        end: "center 50%",
+        scrub: 1.2,
+      },
+    }
+  );
+});
+
+onUnmounted(() => {
+  if (animation?.scrollTrigger) {
+    animation.scrollTrigger.kill();
+  }
+  animation?.kill();
+});
 </script>
 
 <template>
   <div
-    class="flex flex-col lg:flex-row items-start base-x-padding gap-[86px] justify-between mb-12"
+    ref="pageRef"
+    class="flex flex-col lg:flex-row items-start base-x-padding gap-[86px] justify-between mb-12 max-md:mb-[72px] max-lg:justify-center max-lg:items-center"
   >
     <div
-      class="flex relative flex-1 flex-col gap-5 items-start text-start justify-start"
+      class="flex relative flex-1 flex-col gap-5 items-start text-start justify-start max-lg:justify-center max-lg:items-center max-lg:text-center"
     >
       <div class="underTitle">CONTACT US</div>
       <div
@@ -33,7 +77,7 @@ const handleSubmit = () => {};
       </div>
 
       <div
-        class="absolute left-[-40px] bottom-[-80px] w-[400px] h-auto pointer-events-none"
+        class="absolute left-[-40px] bottom-[-80px] w-[400px] h-auto pointer-events-none max-lg:left-1/2 max-lg:-translate-x-1/2"
       >
         <img :src="Spear" alt="Spear decoration" />
       </div>

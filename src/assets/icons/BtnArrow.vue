@@ -1,9 +1,8 @@
 <script setup>
 defineProps({
-  color: {
-    type: String,
-    default: "white",
-  },
+  color: { type: String, default: "white" },
+  hoverColor: { type: String, default: "white" },
+  isHovered: { type: Boolean, default: false },
 });
 </script>
 
@@ -17,7 +16,7 @@ defineProps({
   >
     <path
       d="M19 12L5 12M19 12L13 18M19 12L13 6"
-      :stroke="color"
+      :stroke="isHovered ? hoverColor : color"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"

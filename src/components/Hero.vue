@@ -16,15 +16,15 @@ import bgHero from "../assets/img/bgHero.png";
 const HeroItems = [
   {
     icon: heroIcon1,
-    text: "Media Coverage Secured",
+    text: "100+ Web3 projects served",
   },
   {
     icon: heroIcon2,
-    text: "Campaign Results In",
+    text: "$50M+ ad spend managed",
   },
   {
     icon: heroIcon3,
-    text: "Partnership Activated",
+    text: "P30% average MoM growth",
   },
 ];
 
@@ -54,32 +54,41 @@ const logoOfPartners = [
   >
     <Heder />
 
-    <div class="flex flex-col justify-between h-full pt-[160px] pb-[150px]">
+    <div
+      class="flex flex-col justify-between h-full pt-[160px] pb-[150px] max-md:pt-[120px] max-xl:pb-[120px] max-lg:pb-[80px] max-md:pb-[60px]"
+    >
       <div
-        class="flex flex-col h-full pb-[200px] items-center justify-center gap-14 base-x-padding"
+        class="flex flex-col h-full pb-[200px] items-center justify-center gap-14 base-x-padding max-lg:gap-10 max-md:gap-8 max-md:pb-[120px]"
       >
         <div class="flex flex-col items-center text-center justify-center">
           <div class="underTitle pb-10">Steel Spear Media</div>
-          <div class="title pb-5 max-w-[900px]">
-            Transform Your Business With Our
-            <span class="secTitle">SaaS Solution.</span>
+          <div
+            class="title pb-5 max-w-[900px] max-xl:max-w-[800px] max-lg:max-w-[650px]"
+          >
+            Growth & Visibility for Web3
+            <span class="secTitle">& Crypto</span> Brands.
           </div>
-          <div class="description max-w-[900px]">
-            Steel Spear Media is a leading PR and marketing company with a
-            dynamic team specializing in major fields such as crypto, fintech,
-            software, AI, eCommerce, and more
+          <div class="description max-w-[900px] max-xl:max-w-[800px]">
+            We help crypto, blockchain and fintech brands gain visibility,
+            credibility and measurable growth through strategic PR, influencers,
+            paid media, content and community building.
           </div>
 
-          <div class="mt-8 flex justify-center items-center gap-10">
-            <WhiteBtn label="Get Started" />
+          <div
+            class="mt-8 flex justify-center items-center gap-10 max-md:gap-4 max-md:flex-col"
+          >
+            <WhiteBtn label="Book a Free Consultation" />
             <button
-              class="flex gap-2 items-center bg-transparent text-white font-helvetica text-[18px] font-medium leading-6"
+              class="group flex gap-[6px] items-center bg-transparent text-white font-helvetica text-[18px] font-medium leading-6"
             >
-              Request a Demo <BtnArrow />
+              View Case Studies
+              <BtnArrow
+                class="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[6px]"
+              />
             </button>
           </div>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center flex-wrap justify-center gap-5">
           <div
             v-for="(item, index) in HeroItems"
             :key="index"
@@ -91,29 +100,30 @@ const logoOfPartners = [
                 item.text
               }}</span>
             </div>
-            <img
-              class="mx-7 w-px h-[35px]"
-              v-if="index < HeroItems.length - 1"
-              :src="line"
-              alt="line"
-            />
           </div>
         </div>
       </div>
 
       <div
-        class="py-8 base-x-padding justify-between bg-[linear-gradient(0deg,rgba(0,0,0,0.36)_0%,rgba(0,0,0,0.00)_108.01%)] backdrop-blur-[5px] w-full flex items-center"
+        class="px-[70px] py-7 bg-[linear-gradient(0deg,rgba(0,0,0,0.36)_0%,rgba(0,0,0,0.00)_108.01%)] backdrop-blur-[5px] w-full overflow-hidden max-md:bg-transparent max-md:backdrop-blur-0 max-md:px-[10px] max-md:py-0"
       >
-        <div
-          class="text-white min-w-[150px] max-w-[180px] font-helvetica text-[15px]"
-        >
-          Trusted by Companies around the world
-        </div>
-
-        <div class="flex items-center gap-8">
-          <div v-for="(logo, index) in logoOfPartners" :key="index" class="">
-            <div class="w-[120px] h-auto">
-              <img :src="logo.img" alt="" />
+        <div class="logo-scroll-container">
+          <div class="logo-scroll">
+            <div
+              v-for="(logo, index) in logoOfPartners"
+              :key="index"
+              class="flex h-[80px] items-center mx-8 max-xl:h-[60px] max-md:h-[45px] max-md:mx-4"
+            >
+              <img :src="logo.img" alt="" class="h-auto max-h-full" />
+            </div>
+          </div>
+          <div class="logo-scroll">
+            <div
+              v-for="(logo, index) in logoOfPartners"
+              :key="`duplicate-${index}`"
+              class="flex h-[80px] items-center mx-8 max-xl:h-[60px] max-md:h-[45px] max-md:mx-4"
+            >
+              <img :src="logo.img" alt="" class="h-auto max-h-full" />
             </div>
           </div>
         </div>
@@ -122,4 +132,24 @@ const logoOfPartners = [
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.logo-scroll-container {
+  display: flex;
+  width: 100%;
+}
+
+.logo-scroll {
+  display: flex;
+  animation: scroll-left 20s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+</style>
