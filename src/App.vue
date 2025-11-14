@@ -13,7 +13,7 @@ import Footer from "./layout/Footer.vue";
 <template>
   <Hero />
   <About />
-  <!-- <Work /> -->
+  <Work />
   <Industries />
   <Clients />
   <Services />

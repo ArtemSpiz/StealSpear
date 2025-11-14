@@ -45,6 +45,8 @@ gsap.registerPlugin(ScrollTrigger);
 const pageRef = ref(null);
 
 let animation = null;
+const isMobile = window.innerWidth < 648;
+
 
 onMounted(() => {
   animation = gsap.fromTo(
@@ -65,8 +67,8 @@ onMounted(() => {
       ease: "power2.out",
       scrollTrigger: {
         trigger: pageRef.value,
-        start: "top 80%",
-        end: "center 50%",
+        start: isMobile ? 'top 80%' : "top 80%",
+        end: isMobile ? 'top 30%' : "center 50%",
         scrub: 1.2,
       },
     }
