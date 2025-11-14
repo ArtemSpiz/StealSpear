@@ -217,7 +217,7 @@ onUnmounted(() => {
             </div>
             <div
               :class="[
-                ' w-auto flex object-contain absolute z-0 ',
+                ' w-auto flex object-contain absolute',
                 {
                   'top-0 h-full right-[40px] max-[1400px]:max-h-[300px] max-[1400px]:top-[10%] max-[1400px]:right-0 max-lg:max-h-[200px] ':
                     index === 0,
