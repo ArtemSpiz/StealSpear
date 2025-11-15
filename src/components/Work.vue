@@ -116,7 +116,7 @@ const isMobile = window.innerWidth < 768;
               : 'w-[480px] h-[481px]'
             : isMobile
             ? 'h-[70px]'
-            : 'w-[70px]',
+            : 'w-[70px]  h-[481px]',
         ]"
       >
         <div class="w-full items-end flex justify-end z-10 relative">
