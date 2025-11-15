@@ -126,6 +126,15 @@ const logoOfPartners = [
               <img :src="logo.img" alt="" class="h-auto max-h-full" />
             </div>
           </div>
+          <div class="logo-scroll !hidden 2xl:!flex">
+            <div
+              v-for="(logo, index) in logoOfPartners"
+              :key="`duplicate-${index}`"
+              class="flex h-[80px] items-center mx-8 max-xl:h-[60px] max-md:h-[45px] max-md:mx-4"
+            >
+              <img :src="logo.img" alt="" class="h-auto max-h-full" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -140,7 +149,7 @@ const logoOfPartners = [
 
 .logo-scroll {
   display: flex;
-  animation: scroll-left 20s linear infinite;
+  animation: scroll-left 30s linear infinite;
   flex-shrink: 0;
 }
 

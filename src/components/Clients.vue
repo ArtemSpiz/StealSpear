@@ -47,7 +47,6 @@ const pageRef = ref(null);
 let animation = null;
 const isMobile = window.innerWidth < 648;
 
-
 onMounted(() => {
   animation = gsap.fromTo(
     pageRef.value,
@@ -67,8 +66,8 @@ onMounted(() => {
       ease: "power2.out",
       scrollTrigger: {
         trigger: pageRef.value,
-        start: isMobile ? 'top 80%' : "top 80%",
-        end: isMobile ? 'top 30%' : "center 50%",
+        start: isMobile ? "top 80%" : "top 90%",
+        end: isMobile ? "center 80%" : "center 50%",
         scrub: 1.2,
       },
     }
@@ -113,6 +112,7 @@ onUnmounted(() => {
               'bg-[#2218FF]': index === 3,
             },
           ]"
+          style="filter: blur(200px); will-change: filter"
         ></div>
         <div
           class="gap-[30px] flex-col flex items-start max-md:gap-2 max-xl:items-center"
@@ -132,7 +132,7 @@ onUnmounted(() => {
             </div>
 
             <div
-              class="w-auto overflow-hidden rounded-[30px] hidden pb-[10px] max-xl:flex h-[250px]"
+              class="w-auto overflow-hidden rounded-[30px] hidden pb-[10px] max-xl:flex h-[250px] justify-center"
             >
               <img :src="card.image" alt="" />
             </div>

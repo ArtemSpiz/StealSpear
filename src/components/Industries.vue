@@ -219,20 +219,20 @@ onUnmounted(() => {
               :class="[
                 ' w-auto flex object-contain absolute',
                 {
-                  'top-0 h-full right-[40px] max-[1400px]:max-h-[300px] max-[1400px]:top-[10%] max-[1400px]:right-0 max-lg:max-h-[200px] max-lg:aspect-square':
+                  'top-0 h-full justify-end right-[40px] max-[1400px]:max-h-[300px] max-[1400px]:top-[10%] max-[1400px]:right-0 max-lg:max-h-[200px] max-lg:aspect-square':
                     index === 0,
-                  'bottom-0 right-[0px] h-[300px] max-[1400px]:h-[250px] max-lg:h-[200px] max-lg:w-[170px]':
+                  'bottom-0 right-[0px]  justify-end h-[300px] max-[1400px]:h-[250px] max-lg:h-[200px] max-lg:w-[170px]':
                     index === 1,
-                  'bottom-0 right-[0px] h-[290px] max-[1400px]:h-[200px] max-lg:w-[290px]':
+                  'bottom-0 right-[0px]  justify-end h-[290px] max-[1400px]:h-[200px] max-lg:w-[290px]':
                     index === 2,
                   'bottom-0 right-1/2 translate-x-1/2 h-[215px]  max-md:h-[180px] max-md:w-full':
                     index === 3,
-                  'top-0 right-0 h-[140px] max-md:w-full max-md:h-auto max-md:max-h-[170px]':
+                  'top-0 right-0 h-[140px]  max-md:w-full max-md:h-auto max-md:max-h-[170px]':
                     index === 4,
-                  'bottom-0 left-[20px] h-[140px] max-md:left-auto max-md:right-0 max-md:w-[240px]':
+                  'bottom-0 left-[20px]  justify-end  h-[140px] max-md:left-auto max-md:right-0 max-md:w-[240px]':
                     index === 5,
                   'bottom-[10px] right-0 w-full max-h-[100px] ': index === 6,
-                  'bottom-0 right-0 h-full max-[1400px]:h-[230px] max-md:h-[180px] max-md:w-[300px]':
+                  'bottom-0 right-0  justify-end h-full max-[1400px]:h-[230px] max-md:h-[180px] max-md:w-[300px]':
                     index === 7,
                 },
               ]"
