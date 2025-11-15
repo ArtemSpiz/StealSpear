@@ -66,8 +66,8 @@ onMounted(() => {
       ease: "power2.out",
       scrollTrigger: {
         trigger: pageRef.value,
-        start: isMobile ? "top 80%" : "top 90%",
-        end: isMobile ? "center 80%" : "center 50%",
+        start: isMobile ? "top 85%" : "top 90%",
+        end: isMobile ? "top 0%" : "center 50%",
         scrub: 1.2,
       },
     }

@@ -67,8 +67,8 @@ onMounted(() => {
       ease: "power2.out",
       scrollTrigger: {
         trigger: pageRef.value,
-        start: "top 70%",
-        end: "center 50%",
+        start: isMobile ? "top 80%" : "top 90%",
+        end: isMobile ? "top -10%" : "center 50%",
         scrub: 1.2,
       },
     }
@@ -81,6 +81,8 @@ onUnmounted(() => {
   }
   animation?.kill();
 });
+
+const isMobile = window.innerWidth < 768;
 </script>
 
 <template>
@@ -99,13 +101,23 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div class="flex justify-center items-center self-stretch gap-6">
+    <div
+      class="flex justify-center items-center self-stretch gap-6 max-md:flex-col"
+    >
       <div
         v-for="(card, index) in WorkCards"
         :key="index"
         @click="toggleCard(index)"
-        class="rounded-[20px] relative border backdrop-blur-[32px] h-[481px] flex flex-col justify-between px-5 py-[30px] border-white bg-[#1D1D1D] cursor-pointer overflow-hidden transition-all duration-500 ease-in-out"
-        :class="activeCardIndex === index ? ' w-[480px]' : 'w-[70px]'"
+        class="rounded-[20px] relative border backdrop-blur-[32px] h-[481px] flex flex-col justify-between px-5 py-[30px] border-white bg-[#1D1D1D] cursor-pointer overflow-hidden transition-all duration-500 ease-in-out max-md:!w-full max-md:py-[20px]"
+        :class="[
+          activeCardIndex === index
+            ? isMobile
+              ? 'h-[380px]'
+              : 'w-[480px]'
+            : isMobile
+            ? 'h-[70px]'
+            : 'w-[70px]',
+        ]"
       >
         <div class="w-full items-end flex justify-end z-10 relative">
           <PlusMinusIcon :isOpen="activeCardIndex === index" />
@@ -115,13 +127,17 @@ onUnmounted(() => {
           class="absolute top-0 right-0 w-auto h-full transition-opacity duration-500"
           :class="activeCardIndex === index ? 'opacity-100' : 'opacity-0'"
         >
-          <img :src="card.image" alt="" />
+          <img :src="card.image" alt="" class="max-md:h-4/5" />
         </div>
 
         <div
-          class="absolute left-[-5px] bottom-0 text-[32px] font-helvetica text-white leading-[140%] flex flex-col px-5 py-8 transition-opacity duration-300"
+          class="absolute left-[-5px] bottom-0 text-[32px] font-helvetica text-white leading-[140%] flex flex-col px-5 py-8 transition-opacity duration-300 max-md:bottom-1/2 max-md:translate-y-1/2 max-md:text-[25px]"
           :class="activeCardIndex === index ? 'opacity-0 ' : 'opacity-100'"
-          style="writing-mode: vertical-rl; transform: rotate(180deg)"
+          :style="
+            !isMobile
+              ? { writingMode: 'vertical-rl', transform: 'rotate(180deg)' }
+              : {}
+          "
         >
           {{ card.title }}
         </div>
@@ -134,7 +150,7 @@ onUnmounted(() => {
               : 'opacity-0 pointer-events-none'
           "
         >
-          <div class="text-[32px]">{{ card.title }}</div>
+          <div class="text-[32px] max-md:text-[25px]">{{ card.title }}</div>
           <div class="text-[14px]">{{ card.text }}</div>
         </div>
       </div>
