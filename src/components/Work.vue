@@ -102,18 +102,18 @@ const isMobile = window.innerWidth < 768;
     </div>
 
     <div
-      class="flex justify-center items-center self-stretch gap-6 max-md:flex-col"
+      class="flex justify-center items-center self-stretch gap-6 max-md:flex-col max-md:gap-4"
     >
       <div
         v-for="(card, index) in WorkCards"
         :key="index"
         @click="toggleCard(index)"
-        class="rounded-[20px] relative border backdrop-blur-[32px] h-[481px] flex flex-col justify-between px-5 py-[30px] border-white bg-[#1D1D1D] cursor-pointer overflow-hidden transition-all duration-500 ease-in-out max-md:!w-full max-md:py-[20px]"
+        class="rounded-[20px] relative border backdrop-blur-[32px] flex flex-col justify-between px-5 py-[30px] border-white bg-[#1D1D1D] cursor-pointer overflow-hidden transition-all duration-500 ease-in-out max-md:!w-full max-md:py-[20px] max-md:h-"
         :class="[
           activeCardIndex === index
             ? isMobile
-              ? 'h-[380px]'
-              : 'w-[480px]'
+              ? 'h-[350px]'
+              : 'w-[480px] h-[481px]'
             : isMobile
             ? 'h-[70px]'
             : 'w-[70px]',
